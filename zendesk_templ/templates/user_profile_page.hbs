@@ -50,6 +50,36 @@
 								{{/if}}
 							</span>
 						</li>
+						<li class="stat">
+							<span class="stat-label">{{t 'comment_count'}}</span>
+							<span class="stat-value">
+								{{#if comment_count}}
+									{{comment_count}}
+								{{else}}
+									{{t 'no_activity_yet'}}
+								{{/if}}
+							</span>
+						</li>
+						<li class="stat">
+							<span class="stat-label">{{t 'article_count'}}</span>
+							<span class="stat-value">
+								{{#if article_count}}
+									{{article_count}}
+								{{else}}
+									{{t 'no_activity_yet'}}
+								{{/if}}
+							</span>
+						</li>
+						<li class="stat">
+							<span class="stat-label">{{t 'post_count'}}</span>
+							<span class="stat-value">
+								{{#if post_count}}
+									{{post_count}}
+								{{else}}
+									{{t 'no_activity_yet'}}
+								{{/if}}
+							</span>
+						</li>
 					</ul>
 				</div>
 				<ul class="profile-stats profile-stats-counters">
