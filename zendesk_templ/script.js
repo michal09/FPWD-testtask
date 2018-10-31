@@ -108,4 +108,6 @@ $(document).ready(function() {
   });
 
   $('.article-promoted span').html("#");
+
+  $('footer .footer__links a[href="https://zello.com/"]').html("© 2018 Zello Inc.");
 });
