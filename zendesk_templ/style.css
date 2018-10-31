@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -75,8 +77,8 @@ a:hover {
 .text--note {
   color: #696969 !important;
   font-size: 1.2rem !important;
-  font-weight: 500;
-  font-family: "Roboto-Medium";
+  font-weight: 300;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .button {
@@ -1256,8 +1258,8 @@ input[type="search"] {
 
 .article form .form-field label {
   margin-bottom: 0.4rem;
-  font-family: "Roboto-Medium";
-  font-weight: 500;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
 }
 
 .article form .form-field p {
