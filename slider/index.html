@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>From Poland With Dev - Slider</title>
+	<meta name="author" content="Michal Ostapowicz" />
+	<meta name="description" content="From Poland With Dev - Test Task" />
+	<meta name="keywords"  content="test,task" />
+	<meta name="Resource-type" content="Document" />
+
+	<link rel="stylesheet" type="text/css" href="css/fullpage.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+<div id="fullpage">
+	<div class="section active" id="section0">
+    <h1>Witam From Poland With Dev :)</h1>
+    <img src="images/logo.png" alt="From Poland With Dev">
+  </div>
+	<div class="section" id="section1">
+	    <div class="slide subslide1 active"><h2>Nazywam się Michał Ostapowicz i aplikuję do From Poland With Dev na stanowisko Web Developera...</h2></div>
+	    <div class="slide subslide2"><h2>... a to jest moje zdanie testowe.</h2></div>
+	    <div class="slide subslide3"><h2>Wydaje mi się, że jest poprawnie wykonane :)</h2></div>
+	</div>
+	<div class="section" id="section2"><h2>Dziękuję za uwagę!</h2></div>
+</div>
+
+
+
+<script type="text/javascript" src="js/fullpage.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+  var slideIndex  = 1;
+  var sliding     = false;
+
+  $('#fullpage').fullpage({
+
+      sectionsColor: ['#FFFFFF', '#823b3b', '#000'],
+      scrollingSpeed:1200,
+      css3: true,
+      controlArrows: false,
+
+      onLeave: function(index, nextIndex, direction) {
+          if(index.index == 1 && !sliding) {   
+                    
+            if (direction == 'down' && slideIndex == 3){
+              return true;
+            } else if(direction == 'down' && slideIndex < 5) {
+                
+                  sliding = true;
+                  $.fn.fullpage.moveSlideRight();
+                  slideIndex++;
+                  return false;               
+
+              } 
+
+              else if(direction == 'up' && slideIndex > 1) {
+                  sliding = true;
+                  $.fn.fullpage.moveSlideLeft();
+                  slideIndex--;
+                  return false;
+              }            
+
+          } else if(sliding) {
+              return false;
+          }
+      },
+
+      afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+          sliding = false;
+      }
+
+  });
+});
+</script>
+</body>
+</html>
