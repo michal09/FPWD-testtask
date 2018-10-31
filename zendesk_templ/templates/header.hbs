@@ -1,0 +1,29 @@
+<header>
+	<div class="container">
+		<div class="header__top">
+			<a href="//zello.com/" title="home"><img src="{{logo_url}}" alt="{{t 'logo'}}" /></a>
+			<nav class="nav">
+				<ul class="nav__menu">
+					{{#if alternative_locales}}
+						<li class="desktop-only">
+							<div class="dropdown language-selector" aria-haspopup="true">
+								<a class="dropdown-toggle">
+									{{current_locale.name}}
+								</a>
+								<span class="dropdown-menu dropdown-menu-end" role="menu">
+									{{#each alternative_locales}}
+									<a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">
+										{{name}}
+									</a>
+									{{/each}}
+								</span>
+							</div>
+						</li>
+					{{/if}}
+					<li>{{user_info}}</li>
+					<li class="anonymous">{{link 'new_request' class='nav__menu__submit'}}</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>

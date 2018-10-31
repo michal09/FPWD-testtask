@@ -1,0 +1,65 @@
+	<div class="hero_breadcrumb">
+		<div class="container">
+			{{breadcrumbs}}
+			{{search}}
+		</div>
+	</div>
+
+	<section class="content">
+		<article class="article container">
+			<div>
+				<ul class="community-list-views">
+					<li>{{#link 'topics'}}{{t 'topics'}}{{/link}}</li>
+					<li class="selected">{{#link 'posts'}}{{t 'posts'}}{{/link}}</li>
+					<li>
+						<span class="post-to-community">
+							{{link 'new_post' role='button'}}
+						</span>
+					</li>
+				</ul>
+				<span class="topic-filters">
+					<span class="dropdown">
+						<span class="dropdown-toggle">
+							{{current_filter.label}}
+						</span>
+						<span class="dropdown-menu" role="menu">
+							{{#each filters}}
+								<a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
+									{{name}}
+								</a>
+							{{/each}}
+						</span>
+					</span>
+					<span class="dropdown">
+						<span class="dropdown-toggle">
+							{{current_sorter.label}}
+						</span>
+						<span class="dropdown-menu" role="menu">
+							{{#each sorters}}
+								<a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
+									{{name}}
+								</a>
+							{{/each}}
+						</span>
+					</span>
+				</span>
+
+				<ul class="content__list content__list--full content__list--separate_inside">
+					{{#each posts}}
+						<li>
+							<div class="post-overview {{#if featured}}post-featured{{/if}} {{#if pinned}}post-pinned{{/if}}">
+								<h3><a href="{{url}}" title="{{title}}">{{title}}</a></h3>
+								<ul class="meta-group post-overview-count">
+										<li>{{author.name}}</li>
+										<li>{{date created_at timeago=true}}</li>
+										<li><strong>{{comment_count}}</strong> {{t 'comment' count=comment_count}}</li>
+										<li><strong>{{vote_sum}}</strong> {{t 'vote' count=vote_sum}}</li>
+									</ul>
+							</div>
+						</li>
+					{{/each}}
+				</ul>
+				{{pagination}}
+			</div>
+		</article>
+	</section>

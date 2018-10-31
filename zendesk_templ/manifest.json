@@ -1,0 +1,52 @@
+{
+  "name": "Zello",
+  "author": "Zendesk",
+  "version": "1.0.0",
+  "api_version": 1,
+  "default_locale": "en-us",
+  "settings": [
+    {
+      "label": "brand_group_label",
+      "variables": [
+        {
+          "identifier": "brand_color",
+          "type": "color",
+          "description": "brand_color_description",
+          "label": "brand_color_label",
+          "value": "#3d94f5"
+        },
+        {
+          "identifier": "favicon",
+          "type": "file",
+          "description": "favicon_description",
+          "label": "favicon_label"
+        },
+        {
+          "identifier": "logo",
+          "type": "file",
+          "description": "logo_description",
+          "label": "logo_label"
+        }
+      ]
+    },
+    {
+      "label": "colors_group_label",
+      "variables": [
+        {
+          "identifier": "text_color",
+          "type": "color",
+          "description": "text_color_description",
+          "label": "text_color_label",
+          "value": "#464646"
+        },
+        {
+          "identifier": "link_color",
+          "type": "color",
+          "description": "link_color_description",
+          "label": "link_color_label",
+          "value": "#3d94f5"
+        }
+      ]
+    }
+  ]
+}

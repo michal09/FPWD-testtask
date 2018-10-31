@@ -1,0 +1,97 @@
+	<div class="hero_breadcrumb">
+		<div class="container">
+			{{breadcrumbs}}
+		</div>
+	</div>
+
+	<section class="content">
+		<article class="article container">
+			<div>
+				<nav class="my-activities-nav">
+					<ul>
+						<li class="selected">{{t 'requests'}}</li>
+						<li>{{link 'contributions'}}</li>
+						<li>{{link 'subscriptions'}}</li>
+					</ul>
+				</nav>
+
+				<nav class="grid__col grid__col--2-of-2 my-activities-sub-nav nav-spaced">
+					<ul>
+						{{#each filters}}
+							<li>
+								{{#if selected}}
+									{{name}}
+								{{else}}
+									<a href="{{url}}">{{name}}</a>
+								{{/if}}
+							</li>
+						{{/each}}
+					</ul>
+				</nav>
+
+				{{#form 'requests_filter' class='request-table-toolbar'}}
+					<div class="request-table-filters">
+						{{select 'organization' id='request-organization-select' class='request-filter'}}
+				
+						{{select 'status' id='request-status-select' class='request-filter'}}
+					</div>
+					{{input 'query' id='quick-search' type='search' class='requests-search'}}
+				{{/form}}
+
+				<div class="my-activities-table table-responsive">
+					{{#if requests}}
+						<table id="request-table" class="request-table {{current_filter.identifier}}-requests">
+							<thead>
+								<tr>
+									<th>{{t 'id'}}</th>
+									<th>{{t 'subject'}}</th>
+									<th>
+										{{#is current_filter.identifier 'my'}}
+											{{t 'created'}}
+										{{else}}
+											{{t 'requester'}}
+										{{/is}}
+									</th>
+									<th>{{t 'last_activity'}}</th>
+									<th>{{t 'status'}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								{{#each requests}}
+									<tr>
+										<td>{{id}}</td>
+										<td>
+											<a href="{{url}}">
+												{{#if subject}}
+													{{subject}}
+												{{else}}
+													{{excerpt description characters=50}}
+												{{/if}}
+											</a>
+										</td>
+										<td>
+											{{#is ../current_filter.identifier 'my'}}
+												{{date created_at timeago=true}}
+											{{else}}
+												{{requester.name}}
+											{{/is}}
+										</td>
+										<td>{{date updated_at timeago=true}}</td>
+										<td>
+											<span class="request-status request-{{status}}" title="{{status_description}}">
+												{{status_name}}
+											</span>
+										</td>
+									</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					{{else}}
+						<p>{{t 'no_requests'}}</p>
+					{{/if}}
+				</div>
+				{{pagination}}
+			</div>
+		</article>
+	</section>
+

@@ -1,0 +1,36 @@
+<div class="hero_breadcrumb">
+	<div class="container">
+		{{breadcrumbs}}
+	</div>
+</div>
+<div class="container">
+	<section class="content">
+		<article class="article">
+			<h1 class="pagetitle">
+				{{t 'submit_a_request'}}
+				{{#if follow_up}}
+					<span class="follow-up-hint">
+						{{follow_up}}
+					</span>
+				{{/if}}
+			</h1>
+			
+			<div class="form">
+				{{request_form}}
+			</div>
+
+			{{chat}}
+		</article>
+		<aside class="content__aside">
+			<section class="get-updates">
+				<h2>Get support updates</h2>
+				<p>Want the latest on everything ZelloWork?</p>
+				<p><a href="#" class="button">FOLLOW US</a></p>
+				<h2>Questions?</h2>
+				<p><span class="text--bold">To learn more about ZelloWork, or if you need any help</span> <a href="https://zello.com/work/contact/">Contact us</a>
+				</p>
+			</section>
+		</aside>
+	</section>
+</div>
+

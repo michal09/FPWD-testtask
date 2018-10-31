@@ -1,0 +1,120 @@
+<div class="hero_breadcrumb">
+	<div class="container">
+		{{breadcrumbs}}
+	</div>
+</div>
+<div class="container">
+	<section class="content">
+		<article class="article">
+			<h1 class="pagetitle">
+				{{#if article.internal}}
+					<span class="visibility-internal" data-title="{{t 'internal'}}">
+						<span class="visibility-internal-icon"></span>
+					</span>
+				{{/if}}
+				{{article.title}}
+			</h1>
+			{{article.body}}
+			<div class="article-attachments">
+				<ul class="attachments">
+					{{#each attachments}}
+						<li>
+							<a href="{{url}}" target="_blank">{{name}}</a>
+							<span>({{size}})</span>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+			<div class="article__rating">
+				<div class="article__rating__rate">
+					<div class="article--wrapper">
+						<span class="article__votes_question">{{t 'was_this_article_helpful'}}</span>
+						<div>
+							{{article.vote 'up' class='article-vote-up' selected_class='article-voted' role='button'}}
+							{{article.vote 'down' class='article-vote-down' selected_class='article-voted' role='button'}}
+						</div>
+					</div>
+					<p class="text--bold article__rating__comments">
+						{{article.comment_count}} {{t 'comments' count=article.comment_count}}
+					</p>
+					<p class="article--">
+						{{comment_callout}}
+					</p>
+				</div>
+				<div class="article__rating__summary">
+					<p class="text--faded">{{article.vote 'label' class='article-vote-label'}}</p>
+				</div>
+			</div>
+			<section class="article-comments">
+				{{#if comments}}
+					<ul class="comment-list">
+						{{#each comments}}
+							<li id="{{anchor}}" class="comment">
+								<div class="comment-avatar {{#if author.agent}} comment-avatar-agent {{/if}}">
+									<img src="{{author.avatar_url}}" alt="Avatar">
+								</div>
+								<div class="comment-container">
+									<header class="comment-header">
+										<strong class="comment-author">
+											{{#if author.url}}
+												<a href="{{author.url}}" target="_zendesk_lotus">{{author.name}}</a>
+											{{else}}
+												{{author.name}}
+											{{/if}}
+										</strong>
+										<span class="comment-published">{{date created_at}}</span>
+										{{#if pending}}
+											<span class="comment-pending">{{t 'pending_approval'}}</span>
+										{{/if}}
+									</header>
+									<div class="comment-body markdown">{{body}}</div>
+									{{#if editor}}
+										<div class="comment-edited meta">
+											{{t 'comment_edited' editor_name=editor.name}} {{date edited_at timeago=true}}
+										</div>
+									{{/if}}
+									<footer class="comment-footer">
+										<span class="comment-actions">
+											{{#with ticket}}
+												<a href="{{url}}" target="_zendesk_lotus" class="escalation-badge">
+													#{{id}}
+												</a>
+											{{/with}}
+											{{actions}}
+										</span>
+									</footer>
+								</div>
+							</li>
+						{{/each}}
+					</ul>
+				{{/if}}
+				{{pagination}}
+				{{#form 'comment' class='comment-form'}}
+					<div class="comment-avatar">
+						{{user_avatar class='user-avatar'}}
+					</div>
+
+					<div class="comment-container">
+						{{textarea 'body' rows='4'}}
+						<div class="comment-form-controls">
+							{{input type='submit'}}
+						</div>
+					</div>
+				{{/form}}
+			</section>
+		</article>
+		<aside class="content__aside">
+			<section class="get-updates">
+				<h2>Get support updates</h2>
+				<p>Want the latest on everything ZelloWork?</p>
+				<p><a href="#" class="button">FOLLOW US</a></p>
+				<h2>Questions?</h2>
+				<p><span class="text--bold">To learn more about ZelloWork, or if you need any help</span> <a href="https://zello.com/work/contact/">Contact us</a>
+			</section>
+			{{recent_articles}}
+			{{related_articles}}
+		</aside>
+	</section>
+</div>
+
+

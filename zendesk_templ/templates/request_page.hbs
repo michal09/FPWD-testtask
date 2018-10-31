@@ -1,0 +1,154 @@
+	<div class="hero_breadcrumb">
+		<div class="container">
+			{{breadcrumbs}}
+		</div>
+	</div>
+
+
+	<div class="container">
+		<section class="content">
+			<article class="article">
+				<h1 class="pagetitle">{{request.subject}}</h1>
+				<section class="main-column">
+					{{satisfaction}}
+					<ul class="comment-list">
+						{{#each comments}}
+							<li id="{{anchor}}" class="comment">
+								<div class="comment-header {{#if author.agent}} comment-avatar-agent {{/if}}">
+									<img src="{{author.avatar_url}}" alt="Avatar" class="avatar"/>
+									<strong class="comment-author">{{author.name}}</strong>
+									<span class="comment-published">{{date created_at}}</span>
+								</div>
+								<div class="comment-container">
+									<div class="comment-body">{{body}}</div>
+									{{#if attachments}}
+										<ul class="attachment-list">
+											{{#each attachments}}
+												<li>
+													<a href="{{url}}" target="_blank">{{name}}</a>
+													<span>({{size}})</span>
+												</li>
+											{{/each}}
+										</ul>
+									{{/if}}
+								</div>
+							</li>
+						{{/each}}
+					</ul>
+				
+					{{pagination}}
+				
+					<div class="request-follow-up">
+						{{comment_callout}}
+					</div>
+				
+					{{#form 'comment' class='comment-form'}}
+						<div class="comment-avatar">
+							{{user_avatar class='user-avatar'}}
+						</div>
+						<div class="comment-container">
+							{{textarea 'body' rows='4'}}
+							<div class="comment-attachments">
+								{{upload}}
+							</div>
+							<div class="comment-form-controls clearfix">
+								<div class="comment-mark-as-solved">
+									{{checkbox 'mark_as_solved'}}
+									{{label 'mark_as_solved'}}
+								</div>
+								{{input type='submit'}}
+							</div>
+						</div>
+					{{/form}}
+				</section>
+			</article>
+			<aside class="content__aside">
+				<div class="request-aside">
+					<dl class="request-details">
+						<dt>{{t 'request' request_number=request.id}}</dt>
+						<dt>{{t 'submitted_by' requester_name=request.requester.name}}</dt>
+			
+						{{#form 'organization' id='request-organization'}}
+							<dt>{{t 'organization'}}</dt>
+							<dd>{{select 'organization'}}</dd>
+						{{/form}}
+			
+						{{#if group}}
+							<dt>{{t 'group'}}</dt>
+							<dd>
+								<span>{{group.name}}</span>
+							</dd>
+						{{/if}}
+			
+						<dt>{{t 'status'}}</dt>
+						<dd>
+							<span class="request-status request-{{request.status}}" title="{{request.status_description}}">
+								{{request.status_name}}
+							</span>
+						</dd>
+			
+						{{#if request.type}}
+							<dt>{{t 'type'}}</dt>
+							<dd>
+								<span>
+									{{request.type_name}}
+									{{#is request.type 'task'}}{{t 'task_due_date' due_date=request.due_date}}{{/is}}
+								</span>
+							</dd>
+						{{/if}}
+			
+						{{#if request.priority}}
+							<dt>{{t 'priority'}}</dt>
+							<dd>
+								<span>{{request.priority_name}}</span>
+							</dd>
+						{{/if}}
+			
+						{{#if assignee}}
+							<dt>{{t 'assignee'}}</dt>
+							<dd>
+								<span>{{assignee.name}}</span>
+							</dd>
+						{{/if}}
+			
+						{{#each custom_fields}}
+							<dt>{{title}}</dt>
+							<dd>
+								<span>{{value}}</span>
+							</dd>
+						{{/each}}
+			
+						{{#if attachments}}
+							<dt>{{t 'attachments_heading'}}</dt>
+							<dd>
+								<ul class="attachment-list">
+									{{#each attachments}}
+										<li>
+											<a href="{{url}}" target="_blank">{{name}}</a>
+											<span>({{size}})</span>
+										</li>
+									{{/each}}
+								</ul>
+							</dd>
+						{{/if}}
+			
+						{{#if collaborators}}
+							<dt>{{t 'ccs'}}</dt>
+							<dd>
+								<span>{{t 'ccs_description'}}</span>
+								<ul class="attachment-list">
+									{{#each collaborators}}
+										<li>{{name}}</li>
+									{{/each}}
+								</ul>
+							</dd>
+						{{/if}}
+					</dl>
+			
+					{{link 'new_request' role='button' class='button'}}
+				</div>
+			</aside>
+			
+			{{chat_about_my_ticket}}
+		</section>
+	</div>

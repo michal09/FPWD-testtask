@@ -1,0 +1,53 @@
+	<div class="hero_breadcrumb">
+		<div class="container">
+			{{breadcrumbs}}
+		</div>
+	</div>
+	<div class="container">
+		<section class="content">
+			<div class="content__main">
+				<div class="main-name">
+					<h2 class="main-title">
+						{{#if section.internal}}
+							<span class="visibility-internal" data-title="{{t 'internal'}}">
+								<span class="visibility-internal-icon"></span>
+							</span>
+						{{/if}}
+						{{section.name}}
+					</h2>
+					<span>{{subscribe}}</span>
+					{{#if section.description}}
+						<p>{{section.description}}</p>
+					{{/if}}
+				</div>
+				<div class="content--wrapper">
+					{{#if section.articles}}
+						<ul class="content__list content__list--full">
+							{{#each section.articles}}
+								<li {{#if promoted}} class="article-promoted" {{/if}}>
+									{{#if promoted}}
+										<span data-title="{{t 'promoted'}}">★</span>
+									{{/if}}
+									<a href="{{url}}">{{title}}</a>
+								</li>
+							{{/each}}
+						</ul>
+					{{else}}
+						<ul class="content__list">
+							<li>
+								<i class="section-empty">
+									<a href="{{section.url}}">{{t 'empty'}}</a>
+								</i>
+							</li>
+						</ul>
+					{{/if}}
+				</div>
+			</div>
+			<aside class="content__aside">
+				{{#if help_center.community_enabled}}
+					<h2 class="recent-activity-title"><a href="/hc/communities/public/topics">Forums</a></h2>
+					{{recent_activity scope='community'}}
+				{{/if}}
+			</aside>
+		</section>
+	</div>

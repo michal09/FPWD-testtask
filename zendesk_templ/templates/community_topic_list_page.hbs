@@ -1,0 +1,50 @@
+	<div class="hero_breadcrumb">
+		<div class="container">
+			{{breadcrumbs}}
+			{{search}}
+		</div>
+	</div>
+
+	<section class="content">
+		<article class="article container">
+			<div>
+				<ul class="community-list-views">
+					<li class="selected">{{#link 'topics'}}{{t 'topics'}}{{/link}}</li>
+					<li>{{#link 'posts'}}{{t 'posts'}}{{/link}}</li>
+					<li>
+						<span class="post-to-community">
+							{{link 'new_post' role='button'}}
+						</span>
+					</li>
+				</ul>
+		
+				{{#unless topics}}
+					<p>{{t 'no_content'}}</p>
+				{{/unless}}
+				
+				<ul class="content__list content__list--full content__list--separate_inside">
+					{{#each topics}}
+						<li>
+							<div class="topic-panel">
+								<h3>
+									{{#if internal}}
+										<span class="visibility-internal" data-title="{{t 'internal'}}">
+											<span class="visibility-internal-icon"></span>
+										</span>
+									{{/if}}
+									<a href="{{url}}" title="{{name}}">{{name}}</a>
+								</h3>
+								<p>{{excerpt description}}</p>
+								<ul class="meta-group">
+									<li>{{t 'post_count' count=post_count}}</li>
+									<li>{{t 'follower_count' count=follower_count}}</li>
+								</ul>
+							</div>
+						</li>
+					{{/each}}
+				</ul>
+				{{pagination}}
+			</div>
+		</article>
+	</section>
+
